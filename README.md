@@ -141,6 +141,12 @@ are clean, where they cargo-cult a pattern, where a cheaper model quietly wins â
 genuinely open. This repo is a small rig for finding out. If you learn something, open an
 issue or a PR.
 
+**Do this on your own judgment.** The pattern hands AI agents auto-approval to write and
+run code on your machine. Point it at repos and environments you're comfortable with,
+keep the worktree and sandbox boundaries on, and decide for yourself what's safe to run
+unattended. And make it yours â€” fork it, rewire the lanes, change the rules. It's a
+starting point, not a prescription.
+
 ## The bet behind it
 
 The model layer is commoditizing. Coding CLIs are converging on speed, price, and
