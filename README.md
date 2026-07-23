@@ -119,6 +119,28 @@ has to do. That's where the leverage is.
   (`./venv/bin/pytest`, not bare `python3 -m pytest`) or the gate will false-red on
   green work.
 
+## Things worth trying
+
+The fun of this is that it turns a pile of high-end models into something you can actually
+experiment with, instead of picking one and hoping. A few things worth poking at:
+
+- **Race two models on the same spec.** Dispatch the same task to Grok and Codex in
+  separate worktrees, then read both diffs side by side. They solve the same problem
+  differently more often than you'd expect.
+- **Swap who conducts.** The conductor doesn't have to be the most expensive model. Try a
+  cheaper one planning and a stronger one typing, and see whether the work still holds.
+- **Cross-review.** Have one model's diff checked by another (`codex exec review` over
+  Grok's output, say). Watch where they agree, and where one catches what the other missed.
+- **Trust the gate, then break it.** Loosen the verify command and see how fast quality
+  slips. The gate is doing more work than it looks like.
+- **Fan out on independent subtasks.** Worktree isolation means several workers can run at
+  once without stepping on each other — decompose, dispatch, integrate in order.
+
+None of this is settled. How well these models actually collaborate — where the handoffs
+are clean, where they cargo-cult a pattern, where a cheaper model quietly wins — is
+genuinely open. This repo is a small rig for finding out. If you learn something, open an
+issue or a PR.
+
 ## The bet behind it
 
 The model layer is commoditizing. Coding CLIs are converging on speed, price, and
