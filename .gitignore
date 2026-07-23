@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Worktree / worker artifacts (conductor.py creates sibling worktrees like repo--grok-<tag>)
+*--grok-*/
+*--codex-*/
+*--kimi-*/
+.codex-*-last.txt
+
+# OS
+.DS_Store
