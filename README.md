@@ -1,16 +1,24 @@
 # claude-conductor
 
-A small, working pattern for driving cheaper coding CLIs from Claude Code.
+You hand Claude Code a real task and watch it work. The plan is good. Then it spends
+the next twenty minutes typing out boilerplate, running the test suite, fixing a lint
+error, running the suite again — the grunt work. And you pay for all of it with the one
+thing that actually runs out: the good model's budget. By mid-afternoon you've hit the
+ceiling, and you wait for the reset.
 
-Claude Code is the **conductor**. It plans, writes a scoped spec, and hands the typing
-to a faster or cheaper worker CLI — Grok, Codex, more later — running **headless in an
-isolated git worktree**. When the worker is done, a **deterministic verify command**
-(your tests, typecheck, or lint) decides whether the work is correct. The conductor
-reads the diff, judges whether it matches intent, and integrates it. It never
+The fix isn't a bigger model. It's noticing the smart model shouldn't be the one doing
+the typing.
+
+`claude-conductor` flips the roles. Claude Code becomes the **conductor** — it plans,
+decomposes, and decides what "done" means. The typing goes to a cheaper, faster CLI
+(Grok, Codex, more later) running **headless in an isolated git worktree**. A
+**deterministic verify command** — your tests — decides whether the work is correct.
+The conductor reads the diff, checks it matches intent, and integrates it. It never
 regenerates the work.
 
-That last part is the point. The conductor spends its budget on the two things only it
-can do — decomposition and verification — and lets a worker do the volume.
+That last part is the whole game. The conductor spends its budget only on the two things
+that need judgment — decomposition and verification — and lets a worker do the volume.
+It's maybe two hundred lines of Python. The idea is what matters, not the code.
 
 ```
    ┌─────────────┐   scoped spec    ┌──────────────────────────┐
